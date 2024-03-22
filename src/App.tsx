@@ -1,26 +1,20 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import Todos from "./components/Todos";
+import Todo from "./models/Todo";
 
-function App() {
+const App = () => {
+  const todos = [
+    new Todo("Learn React"),
+    new Todo("Learn TypeScript"),
+    new Todo("Learn JavaScript"),
+    new Todo("Learn NextJs"),
+  ];
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <Todos items={todos} />
     </div>
   );
-}
+};
 
 export default App;
