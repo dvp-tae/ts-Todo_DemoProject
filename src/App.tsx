@@ -1,6 +1,7 @@
 import React from "react";
 import Todos from "./components/Todos";
 import Todo from "./models/Todo";
+import NewTodo from "./components/NewTodo";
 
 const App = () => {
   const todos = [
@@ -10,8 +11,11 @@ const App = () => {
     new Todo("Learn NextJs"),
   ];
 
+  const addToHandler = (todoText: string) => {};
+
   return (
     <div>
+      <NewTodo onAddTodo={addToHandler} />
       <Todos items={todos} />
     </div>
   );
