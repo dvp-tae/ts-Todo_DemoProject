@@ -1,16 +1,22 @@
 import React from "react";
 import Todo from "../models/Todo";
 import TodoItem from "./TodoItem";
-// import TodoText from "./TodoText";
+import styled from "styled-components";
 
 const Todos = ({ items }: { items: Todo[] }) => {
   return (
-    <ul>
+    <Ul>
       {items.map((item) => (
-        <TodoItem todo_id={item.id} todo_text={item.text} />
+        <TodoItem key={item.id} todo_text={item.text} />
       ))}
-    </ul>
+    </Ul>
   );
 };
 
+const Ul = styled.ul`
+  list-style: none;
+  margin: 2rem auto;
+  padding: 0;
+  width: 40rem;
+`;
 export default Todos;
