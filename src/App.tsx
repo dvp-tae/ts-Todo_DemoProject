@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import Todos from "./components/Todos";
 import Todo from "./models/Todo";
 import NewTodo from "./components/NewTodo";
@@ -13,13 +13,19 @@ const App = () => {
       return prevTodos.concat(newTodo);
     });
   };
-  useEffect(() => {
-    console.log(todos);
-  }, [todos]);
+
+  const deleteHandler = (content: string) => {
+    console.log(content);
+    setTodo((prevTodos) => {
+      return prevTodos.filter((prev) => {
+        return prev.text !== content;
+      });
+    });
+  };
   return (
     <div>
       <NewTodo onAddTodo={addToHandler} />
-      <Todos items={todos} />
+      <Todos items={todos} onDeleteTodo={deleteHandler} />
     </div>
   );
 };

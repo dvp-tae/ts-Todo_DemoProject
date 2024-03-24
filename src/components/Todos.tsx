@@ -3,11 +3,24 @@ import Todo from "../models/Todo";
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
 
-const Todos = ({ items }: { items: Todo[] }) => {
+const Todos = ({
+  items,
+  onDeleteTodo,
+}: {
+  items: Todo[];
+  onDeleteTodo: (content: string) => void;
+}) => {
+  const delTodo = (content: string) => {
+    onDeleteTodo(content);
+  };
   return (
     <Ul>
       {items.map((item) => (
-        <TodoItem key={item.id} todo_text={item.text} />
+        <TodoItem
+          todo_id={item.id}
+          todo_text={item.text}
+          delcontent={delTodo}
+        />
       ))}
     </Ul>
   );

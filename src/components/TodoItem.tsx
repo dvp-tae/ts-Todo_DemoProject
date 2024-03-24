@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useRef } from "react";
 import styled from "styled-components";
 
-const TodoText = ({ todo_text }: { todo_text: string }) => {
-  return <Li>{todo_text}</Li>;
+const TodoItem = (props: {
+  todo_id: string;
+  todo_text: string;
+  delcontent: (content: string) => void;
+}) => {
+  const todoListItemRef = useRef<HTMLLIElement>(null);
+
+  const deleteItem = () => {
+    const deleteText = todoListItemRef.current?.textContent as string;
+    props.delcontent(deleteText);
+  };
+
+  return (
+    <Li onClick={deleteItem} ref={todoListItemRef}>
+      {props.todo_text}
+    </Li>
+  );
 };
 
 const Li = styled.li`
@@ -11,4 +26,4 @@ const Li = styled.li`
   padding: 1rem;
   background-color: #f7f5ef;
 `;
-export default TodoText;
+export default TodoItem;
