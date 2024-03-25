@@ -1,20 +1,24 @@
-import React, { useRef } from "react";
+// import React, { useRef } from "react";
 import styled from "styled-components";
 
 const TodoItem = (props: {
   todo_id: string;
   todo_text: string;
-  delcontent: (content: string) => void;
+  // delcontent: (content: string) => void; // 내가 작업한 코드
+  onRemoveTodo: (id: string) => void;
 }) => {
-  const todoListItemRef = useRef<HTMLLIElement>(null);
+  // const todoListItemRef = useRef<HTMLLIElement>(null);  // 내가 작업한 코드
 
-  const deleteItem = () => {
-    const deleteText = todoListItemRef.current?.textContent as string;
-    props.delcontent(deleteText);
-  };
+  // const deleteItem = () => {   // 내가 작업한 코드
+  //   const deleteText = todoListItemRef.current?.textContent as string;
+  //   props.delcontent(deleteText);
+  // };
 
   return (
-    <Li onClick={deleteItem} ref={todoListItemRef}>
+    // <Li onClick={deleteItem} ref={todoListItemRef}>  // 내가 작업한 코드
+    //   {props.todo_text}
+    // </Li>
+    <Li onClick={props.onRemoveTodo.bind(null, props.todo_id)}>
       {props.todo_text}
     </Li>
   );

@@ -14,18 +14,27 @@ const App = () => {
     });
   };
 
-  const deleteHandler = (content: string) => {
-    console.log(content);
+  // const deleteHandler = (content: string) => {  // 내가 작업한 코드
+  //   console.log(content);
+  //   setTodo((prevTodos) => {
+  //     return prevTodos.filter((prev) => {
+  //       return prev.text !== content;
+  //     });
+  //   });
+  // };
+  const removeTodoHandler = (todoId: string) => {
     setTodo((prevTodos) => {
-      return prevTodos.filter((prev) => {
-        return prev.text !== content;
-      });
+      return prevTodos.filter((todo) => todo.id !== todoId);
     });
   };
   return (
     <div>
       <NewTodo onAddTodo={addToHandler} />
-      <Todos items={todos} onDeleteTodo={deleteHandler} />
+      <Todos
+        items={todos}
+        // onDeleteTodo={deleteHandler} // 내가 작업한 코드
+        onRemoveTodo={removeTodoHandler}
+      />
     </div>
   );
 };
