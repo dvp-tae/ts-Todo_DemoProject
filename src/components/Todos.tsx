@@ -1,28 +1,17 @@
-import React from "react";
-import Todo from "../models/Todo";
+import React, { useContext } from "react";
 import TodoItem from "./TodoItem";
 import styled from "styled-components";
+import { TodosContext } from "../store/todos-context";
 
-const Todos = ({
-  items,
-  // onDeleteTodo, // 내가 작업한 코드
-  onRemoveTodo,
-}: {
-  items: Todo[];
-  // onDeleteTodo: (content: string) => void; // 내가 작업한 코드
-  onRemoveTodo: (id: string) => void;
-}) => {
-  // const delTodo = (content: string) => { // 내가 작업한 코드
-  //   onDeleteTodo(content);
-  // };
+const Todos = () => {
+  const todosCtx = useContext(TodosContext);
   return (
     <Ul>
-      {items.map((item) => (
+      {todosCtx.items.map((item) => (
         <TodoItem
           todo_id={item.id}
           todo_text={item.text}
-          // delcontent={delTodo}  // 내가 작업한 코드
-          onRemoveTodo={onRemoveTodo}
+          onRemoveTodo={todosCtx.removeTodo.bind(null, item.id)}
         />
       ))}
     </Ul>

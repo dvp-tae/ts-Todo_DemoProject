@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useContext, useRef } from "react";
 import styled from "styled-components";
+import { TodosContext } from "../store/todos-context";
 
-const NewTodo = (props: { onAddTodo: (text: string) => void }) => {
+const NewTodo = () => {
+  const todosCtx = useContext(TodosContext);
   const todoTextInputRef = useRef<HTMLInputElement>(null);
   // 타입스크립트는 useRef()훅 사용 시 레퍼런스가 연결될 곳을 알 수 없어 타입 지정이 필요 (바닐라JS에서는 그냥 써도 무방)
   // 레퍼런스로 다른 값이 할당될 수도 있기 때문에 default 값을 null이라고 설정해줘야 오류가 안남
@@ -16,7 +18,7 @@ const NewTodo = (props: { onAddTodo: (text: string) => void }) => {
       return;
     }
 
-    props.onAddTodo(enteredText);
+    todosCtx.addTodo(enteredText);
   };
   return (
     <Form onSubmit={subminHandler}>
